@@ -3,17 +3,17 @@ import java.util.Iterator;
 
 public class Greedy {
     ComparadorArco comp = new ComparadorArco();
+	private int metrica = 0;
 
 	public Greedy() {
 	}
 
-	public ArrayList<Arco<Integer>> greedy(GrafoNoDirigido<Integer> grafo){
+	public String greedy(GrafoNoDirigido<Integer> grafo){
 		
 		ArrayList<Arco<Integer>> solucion = new ArrayList<Arco<Integer>>();
 		
 		ArrayList<Arco<Integer>> arcos = ordenarArcos(grafo);
 
-		System.out.println("arcos2: "+arcos);
 		UnionFind conjuntos = new UnionFind(grafo.cantidadVertices());
 		
 		while((conjuntos.count() > 1) && (!arcos.isEmpty())) {
@@ -22,19 +22,40 @@ public class Greedy {
 			
 			int repOrigen = conjuntos.find(primero.getVerticeOrigen());
 			int repDestino = conjuntos.find(primero.getVerticeDestino());
-			System.out.println("repOrigen: " + repOrigen + " repDestino: "+ repDestino);
+			
 			if(repOrigen != repDestino) {
 				solucion.add(primero);
 				conjuntos.union(repOrigen, repDestino);
 			}
+			metrica++;
 		}
 		if(conjuntos.count() == 1) {
-			return solucion;
+			return mostrarSolucion(solucion);
 		}
 		return null;
 	}	
 	
-	public ArrayList<Arco<Integer>> ordenarArcos(GrafoNoDirigido<Integer> grafo){
+	private String mostrarSolucion(ArrayList<Arco<Integer>> solucion){
+		return "Greddy\n"+ this.mostrarEstaciones(solucion) + "\n"+ this.calcularKm(solucion)+ "  kms" +"\n"+ "métrica: " +metrica ;
+	}
+
+	private String mostrarEstaciones(ArrayList<Arco<Integer>> solucion){
+		String rdo = "";
+		for(Arco<Integer> e: solucion){
+			rdo += "E"+e.getVerticeOrigen() +"-"+"E"+e.getVerticeDestino()+", ";
+		}
+		return rdo;
+	}
+
+	private int calcularKm(ArrayList<Arco<Integer>> solucion){
+		int rdo = 0;
+		for(Arco<Integer> e: solucion){
+			rdo += e.getEtiqueta(); 
+		}
+		return rdo;
+	}
+
+	private ArrayList<Arco<Integer>> ordenarArcos(GrafoNoDirigido<Integer> grafo){
 		ArrayList<Arco<Integer>> arcos = new ArrayList<Arco<Integer>>();
 		Iterator<Arco<Integer>> it = grafo.obtenerArcos();
 
