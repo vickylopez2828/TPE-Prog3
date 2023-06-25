@@ -26,15 +26,11 @@ public class Main {
 		CSVReader reader = new CSVReader(path);
 		reader.read(g2);
 		
-		//System.out.println(g);
+		System.out.println("holaaa");
 		
 		g2.imprimirGrafo();
 		//g.imprimirEtiquetaArco();
-		//System.out.println(g2.isConexo());
-		//System.out.println(g.isConexo());
-		//Greedy greedy = new Greedy();
-		
-		//System.out.println(greedy.greedy(g2));
+		//System.out.println(g2.isConexo()); 
 		
 	}
 }
