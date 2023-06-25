@@ -29,6 +29,11 @@ public class Main {
 		System.out.println("holaaa");
 		
 		g2.imprimirGrafo();
+		Greedy greedy = new Greedy();
+		greedy.greedy(g2);
+		System.out.println("solucion: " +greedy.greedy(g2));
+
+		
 		//g.imprimirEtiquetaArco();
 		//System.out.println(g2.isConexo()); 
 		

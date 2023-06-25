@@ -8,7 +8,7 @@ public class UnionFind {
 		 for(int i = 0; i < cantVertices; i++) {
 			 representantes.add(i, i);
 		 }
-		// System.out.println(vertices);
+		System.out.println("representantes: "+representantes);
 		 this.count = cantVertices;
 	 }
 
@@ -34,6 +34,7 @@ public class UnionFind {
 			 return i;
 		 }
 		 int aux = this.find(representantes.get(i));
+		 //System.out.println("ver:"+ representantes.set(i, aux));
 		 return representantes.set(i, aux);
 	 }
 	
