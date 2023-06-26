@@ -30,6 +30,7 @@ public class UnionFind {
 	 }
 	 
 	 public int find(int i) {
+		//int aux = representantes.indexOf(representantes.get(i));
 		while(representantes.get(i) >= 0){
 			i = representantes.get(i);
 

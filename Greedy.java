@@ -11,9 +11,7 @@ public class Greedy {
 	public String greedy(GrafoNoDirigido<Integer> grafo){
 		
 		ArrayList<Arco<Integer>> solucion = new ArrayList<Arco<Integer>>();
-		
 		ArrayList<Arco<Integer>> arcos = ordenarArcos(grafo);
-
 		UnionFind conjuntos = new UnionFind(grafo.cantidadVertices());
 		
 		while((conjuntos.count() > 1) && (!arcos.isEmpty())) {
@@ -22,7 +20,6 @@ public class Greedy {
 			
 			int repOrigen = conjuntos.find(primero.getVerticeOrigen());
 			int repDestino = conjuntos.find(primero.getVerticeDestino());
-			
 			if(repOrigen != repDestino) {
 				solucion.add(primero);
 				conjuntos.union(repOrigen, repDestino);
@@ -32,11 +29,13 @@ public class Greedy {
 		if(conjuntos.count() == 1) {
 			return mostrarSolucion(solucion);
 		}
-		return null;
+		return "no es conexo";
 	}	
 	
 	private String mostrarSolucion(ArrayList<Arco<Integer>> solucion){
-		return "Greddy\n"+ this.mostrarEstaciones(solucion) + "\n"+ this.calcularKm(solucion)+ "  kms" +"\n"+ "métrica: " +metrica ;
+		return "Greddy\n"+ this.mostrarEstaciones(solucion) 
+		+ "\n"+ this.calcularKm(solucion)
+		+ "  kms" +"\n"+ "métrica: " +metrica ;
 	}
 
 	private String mostrarEstaciones(ArrayList<Arco<Integer>> solucion){
