@@ -194,23 +194,4 @@ public class GrafoDirigido<T> implements Grafo<T> {
 		return this.vertices.toString() ;
 	}
 
-	public boolean isConexo() {
-		UnionFind componentes = new UnionFind(this.cantidadVertices());
-		Iterator<Arco<T>> it = this.obtenerArcos();
-		if(it != null) {
-			while(it.hasNext()) {
-				Arco<T> arco = it.next();
-				int u = arco.getVerticeOrigen();
-				int v = arco.getVerticeDestino();
-				int representanteU = componentes.find(u); 
-				int representanteV = componentes.find(v);
-				
-				if(representanteU != representanteV) {
-					componentes.union(representanteU, representanteV);
-				}
-			}
-		}
-		return componentes.count() == 1;
-	}
-
 }
